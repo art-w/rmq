@@ -24,3 +24,11 @@ let t = Impl.preprocess min_array (* to precompute some answers *)
 let found_index = Impl.minimum_index min_array t ~i:2 ~len:3 (* query range [2..4] for its minimum *)
 let () = assert (arr.(found_index) = "c")
 ```
+
+As an example application, consider finding the [Lowest Common Ancestor (LCA)](https://en.wikipedia.org/wiki/Lowest_common_ancestor) between any two nodes in a tree:
+- An array of nodes is obtained by an in-order traversal of the tree from left to right (in dashed red)
+- The minimum element (by depth) between any two nodes in the array is their lowest common ancestor
+
+![LCA](https://art-w.github.io/rmq/lca.png)
+
+When applied to a [suffix tree](https://en.wikipedia.org/wiki/Suffix_tree), this yields a constant time "Longest Common Prefix (LCP)" between any substrings! (with linear preprocessing)
