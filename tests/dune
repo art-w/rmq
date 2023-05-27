@@ -1,0 +1,1 @@
+(executable (name enum) (modules enum) (libraries rmq unix))
