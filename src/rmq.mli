@@ -32,3 +32,6 @@ module Sparse : S
 
 module Hybrid : S
 (** {b O(1)} query, {b O(N)} preprocessing and memory. *)
+
+module Segment : S
+(** {b O(logN)} query, {b O(N)} preprocessing and memory. *)

@@ -31,5 +31,6 @@ let () =
     let arr = Array.init len (fun _ -> Random.int 10_000) in
     test "Dense" (module Dense) arr ;
     test "Sparse" (module Sparse) arr ;
-    test "Hybrid" (module Hybrid) arr
+    test "Hybrid" (module Hybrid) arr ;
+    test "Segment" (module Segment) arr
   done

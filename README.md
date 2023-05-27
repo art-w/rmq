@@ -4,12 +4,13 @@ Given a preprocessed array, a [Range Minimum Query (RMQ)](https://en.wikipedia.o
 
 This library provides various implementations with different trade-offs:
 
-|        | Preprocessing and Memory | Query  |  |
-|-------:|:-------------------------|:-------|:-|
-| Naive  | `O(1)`                   | `O(N)` | _No preprocessing_ |
-| Dense  | `O(N²)`                  | `O(1)` | _Precompute all queries_ |
-| Sparse | `O(N logN)`              | `O(1)` | _Precompute queries with a power-of-two length_ |
-| Hybrid | `O(N)`                   | `O(1)` | _Combine `Dense` and `Sparse` to shave a log!_ |
+|         | Preprocessing and Memory | Query     |  |
+|--------:|:-------------------------|:----------|:-|
+| Naive   | `O(1)`                   | `O(N)`    | _No preprocessing_ |
+| Dense   | `O(N²)`                  | `O(1)`    | _Precompute all queries_ |
+| Sparse  | `O(N logN)`              | `O(1)`    | _Precompute queries with a power-of-two length_ |
+| Hybrid  | `O(N)`                   | `O(1)`    | _Combine `Dense` and `Sparse` to shave a log!_ |
+| Segment | `O(N)`                   | `O(logN)` | _Binary partitioning of precomputed queries_ |
 
 [![benchmarks](https://art-w.github.io/rmq/bench.png)](https://art-w.github.io/rmq/bench.png)
 

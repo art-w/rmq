@@ -9,26 +9,29 @@ set title "Preprocessing"
 set format y "%1gns"
 set yrange [0:5000]
 
-plot '/tmp/rmq.tsv' index 0 using ($1/1000):2 with lines title "Naive", \
-     '/tmp/rmq.tsv' index 1 using ($1/1000):2 with lines title "Dense", \
-     '/tmp/rmq.tsv' index 2 using ($1/1000):2 with lines title "Sparse", \
-     '/tmp/rmq.tsv' index 3 using ($1/1000):2 with lines title "Hybrid"
+plot '/tmp/rmq.tsv' index 0 using ($1/1000):2 with lines lw 3 title "Naive", \
+     '/tmp/rmq.tsv' index 1 using ($1/1000):2 with lines lw 3 title "Dense", \
+     '/tmp/rmq.tsv' index 2 using ($1/1000):2 with lines lw 3 title "Sparse", \
+     '/tmp/rmq.tsv' index 3 using ($1/1000):2 with lines lw 3 title "Hybrid", \
+     '/tmp/rmq.tsv' index 4 using ($1/1000):2 with lines lw 3 title "Segment"
 
 set title "Memory"
 set yrange [0:500]
 set format y "%1gkw"
 
-plot '/tmp/rmq.tsv' index 0 using ($1/1000):($4/1024) with lines title "Naive", \
-     '/tmp/rmq.tsv' index 1 using ($1/1000):($4/1024) with lines title "Dense", \
-     '/tmp/rmq.tsv' index 2 using ($1/1000):($4/1024) with lines title "Sparse", \
-     '/tmp/rmq.tsv' index 3 using ($1/1000):($4/1024) with lines title "Hybrid"
+plot '/tmp/rmq.tsv' index 0 using ($1/1000):($4/1024) with lines lw 3 title "Naive", \
+     '/tmp/rmq.tsv' index 1 using ($1/1000):($4/1024) with lines lw 3 title "Dense", \
+     '/tmp/rmq.tsv' index 2 using ($1/1000):($4/1024) with lines lw 3 title "Sparse", \
+     '/tmp/rmq.tsv' index 3 using ($1/1000):($4/1024) with lines lw 3 title "Hybrid", \
+     '/tmp/rmq.tsv' index 4 using ($1/1000):($4/1024) with lines lw 3 title "Segment"
 
 set title "Mean query time"
 unset yrange
 set format y "%1gns"
 set yrange [0:0.7]
 
-plot '/tmp/rmq.tsv' index 0 using ($1/1000):3 with lines title "Naive", \
-     '/tmp/rmq.tsv' index 1 using ($1/1000):3 with lines title "Dense", \
-     '/tmp/rmq.tsv' index 2 using ($1/1000):3 with lines title "Sparse", \
-     '/tmp/rmq.tsv' index 3 using ($1/1000):3 with lines title "Hybrid"
+plot '/tmp/rmq.tsv' index 0 using ($1/1000):3 with lines lw 3 title "Naive", \
+     '/tmp/rmq.tsv' index 1 using ($1/1000):3 with lines lw 3 title "Dense", \
+     '/tmp/rmq.tsv' index 2 using ($1/1000):3 with lines lw 3 title "Sparse", \
+     '/tmp/rmq.tsv' index 3 using ($1/1000):3 with lines lw 3 title "Hybrid", \
+     '/tmp/rmq.tsv' index 4 using ($1/1000):3 with lines lw 3 title "Segment"

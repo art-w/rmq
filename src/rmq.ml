@@ -256,3 +256,51 @@ module Hybrid : S = struct
       | Some result, None | None, Some result -> result
       | Some bot, Some top -> min bot top
 end
+
+module Segment = struct
+  type t = int array
+
+  let preprocess {cmp; length} =
+    let t = Array.make ((2 * length) + 1) (-1) in
+    let rec go loc i len =
+      let result =
+        if len = 1
+        then i
+        else if len = 2
+        then
+          let j = i + 1 in
+          if cmp i j then i else j
+        else
+          let len2 = len / 2 in
+          let left = go (2 * loc) i len2 in
+          let right = go ((2 * loc) + 1) (i + len2) (len - len2) in
+          if cmp left right then left else right
+      in
+      t.(loc - 1) <- result ;
+      result
+    in
+    let _ = go 1 0 length in
+    t
+
+  let preprocess min_array =
+    if min_array.length <= 1 then [||] else preprocess min_array
+
+  let minimum_index {cmp; length} t ~i ~len =
+    check_range ~i ~len ~length ;
+    let rec go loc i' len' =
+      if len' = 0 || i' + len' <= i || i + len <= i'
+      then None
+      else if i' >= i && i' + len' <= i + len
+      then if len' = 1 then Some i' else Some t.(loc - 1)
+      else
+        let len2 = len' / 2 in
+        let left = go (2 * loc) i' len2 in
+        let right = go ((2 * loc) + 1) (i' + len2) (len' - len2) in
+        match left, right with
+        | None, opt | opt, None -> opt
+        | Some left, Some right -> Some (if cmp left right then left else right)
+    in
+    match go 1 0 length with
+    | None -> assert false
+    | Some result -> result
+end

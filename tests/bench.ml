@@ -36,4 +36,5 @@ let () =
   benchmark "Naive" (module Naive) ~max_len:500 ;
   benchmark "Dense" (module Dense) ~max_len:10_000 ;
   benchmark "Sparse" (module Sparse) ~max_len:10_000 ;
-  benchmark "Hybrid" (module Hybrid) ~max_len:10_000
+  benchmark "Hybrid" (module Hybrid) ~max_len:10_000 ;
+  benchmark "Segment" (module Segment) ~max_len:10_000
