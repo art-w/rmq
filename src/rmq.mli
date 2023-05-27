@@ -13,10 +13,12 @@ module type S = sig
   (** The type of a preprocessed array optimized for fast range-minimum queries. *)
 
   val preprocess : min_array -> t
-  (** Preprocess the array argument to allow fast range-minimum queries. *)
+  (** Preprocess the array argument to enable fast range-minimum queries. *)
 
   val query : min_array -> t -> i:int -> len:int -> int
-  (** [query min_array t ~i ~len] returns the index [j] in the range [i, i+len] of [min_array], such that the element at position [j] is the minimum over that range (according to the comparison function provided by [min_array]). The preprocessed [t] argument must have been created from the same unmodified [min_array], otherwise the results are unspecified. *)
+  (** [query min_array t ~i ~len] returns the index [j] in the range [i, i+len-1] of [min_array], such that the element at position [j] is the minimum over that range (according to the comparison function provided by [min_array]). The preprocessed [t] argument must have been created from the same unmodified [min_array], otherwise the results are unspecified.
+   @raise Invalid_argument if the range is outside the bounds of the array.
+  *)
 end
 
 module Naive : S with type t = unit

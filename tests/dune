@@ -1,2 +1,9 @@
-(executable (name enum) (modules enum) (libraries rmq unix))
-(executable (name bench) (modules bench) (libraries rmq unix))
+(executable
+ (name enum)
+ (modules enum)
+ (libraries rmq unix))
+
+(executable
+ (name bench)
+ (modules bench)
+ (libraries rmq unix))

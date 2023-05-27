@@ -1,1 +1,2 @@
-(library (name rmq))
+(library
+ (public_name rmq))
