@@ -8,7 +8,7 @@ module type S = sig
 
   val preprocess : min_array -> t
 
-  val query : min_array -> t -> i:int -> len:int -> int
+  val minimum_index : min_array -> t -> i:int -> len:int -> int
 end
 
 let check_range ~i ~len ~length =
@@ -24,7 +24,7 @@ module Naive = struct
 
   let preprocess _ = ()
 
-  let query {cmp; length} () ~i ~len =
+  let minimum_index {cmp; length} () ~i ~len =
     check_range ~i ~len ~length ;
     let found = ref i in
     for k = i + 1 to i + len - 1 do
@@ -64,7 +64,7 @@ module Dense = struct
 
   let unsafe_query dense ~i ~len = if len = 1 then i else dense.(len - 2).(i)
 
-  let query {length; _} dense ~i ~len =
+  let minimum_index {length; _} dense ~i ~len =
     check_range ~i ~len ~length ;
     unsafe_query dense ~i ~len
 
@@ -120,7 +120,7 @@ module Sparse = struct
         let right = sparse.(sparse_len - 1).(j) in
         if cmp left right then left else right
 
-  let query {cmp; length} sparse ~i ~len =
+  let minimum_index {cmp; length} sparse ~i ~len =
     check_range ~i ~len ~length ;
     unsafe_query ~cmp sparse ~i ~len
 end
@@ -191,7 +191,7 @@ module Hybrid : S = struct
       let top = Sparse.preprocess (of_bot ~cmp ~block_size bot) in
       {top; bot}
 
-  let query {cmp; length} {top; bot} ~i ~len =
+  let minimum_index {cmp; length} {top; bot} ~i ~len =
     let block_size = log2 length / 2 in
     if block_size <= 1
     then (

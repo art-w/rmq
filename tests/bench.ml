@@ -12,7 +12,7 @@ let bench (module Rmq : S) arr =
   let t1 = Unix.gettimeofday () in
   for i = 0 to len - 1 do
     for len = 1 to len - i do
-      let _ = Rmq.query input t ~i ~len in
+      let _ = Rmq.minimum_index input t ~i ~len in
       incr nb_queries
     done
   done ;

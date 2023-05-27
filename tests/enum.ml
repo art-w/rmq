@@ -9,8 +9,8 @@ let test name (module Rmq : S) arr =
   let t = Rmq.preprocess input in
   for i = 0 to Array.length arr - 1 do
     for len = 1 to Array.length arr - i do
-      let result = Rmq.query input t ~i ~len in
-      let expect = Naive.query input naive ~i ~len in
+      let result = Rmq.minimum_index input t ~i ~len in
+      let expect = Naive.minimum_index input naive ~i ~len in
       if arr.(result) <> arr.(expect) (* TODO: result = expect *)
       then begin
         Format.printf "INPUT:@." ;
